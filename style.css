@@ -1,0 +1,369 @@
+/* =========================
+   Base globale (mode clair)
+   ========================= */
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f4f6fa;
+  color: #111827;
+  margin: 0;
+}
+
+/* Layout général */
+.app-layout {
+  min-height: 100vh;
+}
+
+/* =========================
+   Sidebar industrielle
+   ========================= */
+
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  color: #e5e7eb;
+  border-right: 1px solid rgba(15, 23, 42, 0.7);
+}
+
+/* Boutons du menu */
+.sidebar .nav-link {
+  border-radius: 0.5rem;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(148, 163, 184, 0.25);
+  color: #ffffff;
+}
+
+.sidebar .nav-link.active {
+  background: linear-gradient(90deg, #2563eb, #0ea5e9);
+  color: #ffffff;
+}
+
+/* =========================
+   Contenu principal & cartes
+   ========================= */
+
+main {
+  background: #f4f6fa;
+}
+
+/* Cartes gradient de la page d’intro */
+.bg-gradient-card {
+  background: radial-gradient(circle at top left, #e5f0ff 0, #ffffff 55%);
+  border: 1px solid #d1d5db;
+  color: #111827;
+  border-radius: 0.9rem;
+}
+
+/* Modules : petite animation d’apparition */
+.module-section {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* =========================
+   KPI cards & feux tricolores
+   ========================= */
+
+/* Cartes KPI avancées */
+.kpi-card {
+  background: #ffffff;
+  border-radius: 0.9rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Couleurs texte KPI */
+.kpi-good {
+  color: #166534;
+}
+
+.kpi-warning {
+  color: #92400e;
+}
+
+.kpi-bad {
+  color: #b91c1c;
+}
+
+/* Variantes de cartes selon criticité */
+.kpi-good-card {
+  background: #ecfdf3;
+  border-color: #bbf7d0;
+}
+
+.kpi-warning-card {
+  background: #fefce8;
+  border-color: #fde68a;
+}
+
+.kpi-bad-card {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+/* =========================
+   Tables (mode clair)
+   ========================= */
+
+/* On réutilise .table-dark mais avec couleurs claires */
+.table-dark {
+  --bs-table-bg: #ffffff;
+  --bs-table-color: #111827;
+  --bs-table-striped-bg: #f9fafb;
+  --bs-table-striped-color: #111827;
+  --bs-table-hover-bg: #eef2ff;
+  --bs-table-hover-color: #111827;
+}
+
+table.table tr td {
+  vertical-align: middle;
+}
+
+/* =========================
+   Checklist : lignes intelligentes
+   ========================= */
+
+.chk-row {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chk-row-good {
+  background-color: #f0fdf4;
+}
+
+.chk-row-warning {
+  background-color: #fefce8;
+}
+
+.chk-row-bad {
+  background-color: #fef2f2;
+}
+
+/* Cellule avec dot de statut */
+.chk-status-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: #d1d5db;
+}
+
+/* Couleurs du dot selon le statut */
+.chk-row-good .status-dot {
+  background-color: #16a34a;
+}
+
+.chk-row-warning .status-dot {
+  background-color: #eab308;
+}
+
+.chk-row-bad .status-dot {
+  background-color: #dc2626;
+}
+
+/* =========================
+   Boutons & détails
+   ========================= */
+
+/* Bouton très petit pour "Clôturer" dans le plan d’actions */
+.btn-xs {
+  padding: 0.1rem 0.35rem;
+  font-size: 0.7rem;
+  border-radius: 9999px;
+}
+
+/* =========================
+   Animation globale
+   ========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Dashboard cockpit */
+.dashboard-kpi-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4ff 45%, #ffffff 100%);
+  border-radius: 0.9rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  padding: 0.8rem 0.9rem;
+  cursor: default;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.dashboard-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.kpi-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.kpi-icon-blue {
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+}
+
+.kpi-icon-orange {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.kpi-icon-red {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.kpi-icon-amber {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.kpi-main-value {
+  font-size: 1.8rem;
+  font-weight: 750;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.kpi-unit {
+  font-size: 1rem;
+  margin-left: 2px;
+  color: #6b7280;
+}
+
+.kpi-trend {
+  font-size: 0.85rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.kpi-trend.up {
+  background-color: #ecfdf3;
+  color: #166534;
+}
+
+.kpi-trend.down {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.kpi-trend.stable {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+/* États des cartes */
+.dashboard-kpi-card.good {
+  border-color: #22c55e;
+  box-shadow: 0 18px 45px rgba(22, 163, 74, 0.16);
+}
+
+.dashboard-kpi-card.warning {
+  border-color: #f97316;
+  box-shadow: 0 18px 45px rgba(234, 88, 12, 0.16);
+}
+
+.dashboard-kpi-card.bad {
+  border-color: #ef4444;
+  box-shadow: 0 18px 45px rgba(220, 38, 38, 0.16);
+}
+
+/* Cartes de graphiques */
+.dashboard-chart-card {
+  border-radius: 0.9rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.10);
+}
+/* Bandeau de synthèse QMS */
+.qms-summary-banner {
+  border-radius: 0.9rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  background: #ffffff;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qms-summary-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  flex-shrink: 0;
+}
+
+.qms-summary-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.15rem;
+}
+
+.qms-summary-body {
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+/* États du bandeau */
+.qms-summary-good {
+  border-color: #22c55e;
+  background: linear-gradient(135deg, #ecfdf3, #ffffff);
+}
+
+.qms-summary-warning {
+  border-color: #f97316;
+  background: linear-gradient(135deg, #fff7ed, #ffffff);
+}
+
+.qms-summary-bad {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2, #ffffff);
+}

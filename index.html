@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>ISO 14001 & EN 9100 – QMS Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Icons (Bootstrap Icons) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+  />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- jsPDF pour génération PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Styles custom -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-light text-dark">
+  <div class="app-layout d-flex">
+    <!-- SIDEBAR -->
+    <nav class="sidebar d-flex flex-column p-3">
+      <div class="mb-4">
+        <h4 class="text-light fw-bold">
+          QMS Assistant
+        </h4>
+        <p class="text-secondary small mb-0">
+          ISO 14001:2015 & EN 9100
+        </p>
+        <p class="text-secondary small mb-0">
+          by <span class="fw-semibold">Nassira FAHFOUHI</span>
+        </p>
+      </div>
+
+
+      <ul class="nav nav-pills flex-column gap-1" id="navMenu">
+        <li class="nav-item">
+          <button class="nav-link active w-100 text-start"
+                  data-target="module-intro">
+            <i class="bi bi-info-circle me-2"></i>Introduction
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link w-100 text-start"
+                  data-target="module-standards">
+            <i class="bi bi-journal-text me-2"></i>Comprendre les normes
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link w-100 text-start"
+                  data-target="module-checklist">
+            <i class="bi bi-check2-square me-2"></i>Checklist conformité
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link w-100 text-start"
+                  data-target="module-risks">
+            <i class="bi bi-exclamation-triangle me-2"></i>Risques & opportunités
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link w-100 text-start"
+                  data-target="module-actions">
+            <i class="bi bi-kanban me-2"></i>Plan d’actions
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link w-100 text-start"
+                  data-target="module-audit">
+            <i class="bi bi-clipboard-data me-2"></i>Audit interne simulé
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link w-100 text-start"
+                  data-target="module-dashboard">
+            <i class="bi bi-speedometer2 me-2"></i>Dashboard qualité
+          </button>
+        </li>
+      </ul>
+
+      <div class="mt-auto small text-secondary">
+        <div>© 2025 – QMS Assistant</div>
+        <div>Design & développement : <span class="fw-semibold">Nassira FAHFOUHI</span></div>
+      </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="flex-grow-1 p-4">
+      <!-- INTRO -->
+      <section id="module-intro" class="module-section">
+        <h2 class="mb-3">Assistant ISO 14001 & EN 9100</h2>
+        <p class="text-secondary">
+          Application pédagogique pour comprendre, simuler et évaluer la mise en conformité
+          aux normes ISO 14001:2015 (management environnemental) et EN 9100 (qualité aéronautique).
+        </p>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-4">
+            <div class="card bg-gradient-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <i class="bi bi-journal-check me-2"></i>Normes structurées
+                </h5>
+                <p class="card-text small text-secondary">
+                  Résumés clairs des chapitres 4 à 10, avec vocabulaire industriel et exemples
+                  orientés aéronautique.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-gradient-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <i class="bi bi-sliders2-vertical me-2"></i>Simulation d’audit
+                </h5>
+                <p class="card-text small text-secondary">
+                  Checklist de conformité, génération de questions d’audit et analyse des écarts
+                  comme dans un vrai audit de certification.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-gradient-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <i class="bi bi-rocket-takeoff me-2"></i>Focus aéronautique
+                </h5>
+                <p class="card-text small text-secondary">
+                  Intégration du risk-based thinking, sécurité aéronautique et exigences
+                  spécifiques EN 9100 dérivées d’ISO 9001.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE 1 : COMPRENDRE LES NORMES -->
+      <section id="module-standards" class="module-section d-none">
+        <h2 class="mb-3">Comprendre les normes</h2>
+        <p class="text-secondary">
+          Vue structurée des exigences ISO 14001:2015 et EN 9100, organisée par chapitres 4 à 10.
+        </p>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-header bg-dark-subtle text-dark">
+                ISO 14001:2015 – Management environnemental
+              </div>
+              <div class="card-body text-dark">
+                <div class="accordion" id="accordionISO14001">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="iso14001-clause4-h">
+                      <button class="accordion-button" type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#iso14001-clause4">
+                        Chapitre 4 – Contexte de l’organisme
+                      </button>
+                    </h2>
+                    <div id="iso14001-clause4" class="accordion-collapse collapse show"
+                         data-bs-parent="#accordionISO14001">
+                      <div class="accordion-body">
+                        <p class="mb-1">
+                          L’organisme doit analyser son environnement interne et externe
+                          pour comprendre les enjeux qui peuvent impacter son système de
+                          management environnemental. [web:21][web:24]
+                        </p>
+                        <p class="small mb-0">
+                          Exemples : pression réglementaire, attentes des parties intéressées,
+                          activités à impact environnemental (émissions, déchets, énergie).
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="iso14001-clause5-h">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#iso14001-clause5">
+                        Chapitre 5 – Leadership
+                      </button>
+                    </h2>
+                    <div id="iso14001-clause5" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionISO14001">
+                      <div class="accordion-body">
+                        <p class="mb-1">
+                          La direction doit démontrer son engagement envers la protection
+                          de l’environnement, la conformité réglementaire et l’amélioration continue. [web:21]
+                        </p>
+                        <p class="small mb-0">
+                          Exemples : politique environnementale, définition de rôles et
+                          responsabilités, intégration de l’EMS dans la stratégie.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- etc. pour 6 à 10 -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EN 9100 -->
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-header bg-dark-subtle text-dark">
+                EN 9100 – Qualité aéronautique
+              </div>
+              <div class="card-body text-dark">
+                <div class="accordion" id="accordionEN9100">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="en9100-clause4-h">
+                      <button class="accordion-button" type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#en9100-clause4">
+                        Chapitre 4 – Contexte de l’organisme
+                      </button>
+                    </h2>
+                    <div id="en9100-clause4" class="accordion-collapse collapse show"
+                         data-bs-parent="#accordionEN9100">
+                      <div class="accordion-body">
+                        <p class="mb-1">
+                          EN 9100 reprend la structure d’ISO 9001 et ajoute des attentes
+                          spécifiques liées à la sécurité, la fiabilité et la traçabilité
+                          des produits aéronautiques. [web:25][web:28][web:37]
+                        </p>
+                        <p class="small mb-0">
+                          Exemples : exigences client aéronautique, autorités de l’aviation,
+                          fournisseurs critiques, configuration des produits.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="en9100-clause8-h">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#en9100-clause8">
+                        Chapitre 8 – Réalisation des activités opérationnelles
+                      </button>
+                    </h2>
+                    <div id="en9100-clause8" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionEN9100">
+                      <div class="accordion-body">
+                        <p class="mb-1">
+                          Ce chapitre renforce la maîtrise de la conception, de la production,
+                          de la validation et du contrôle des changements pour les produits
+                          aéronautiques. [web:28][web:31]
+                        </p>
+                        <p class="small mb-0">
+                          Exemples : gestion de configuration, maîtrise des fournisseurs,
+                          enregistrements de traçabilité série/lot, libération produit.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- etc. pour 5, 6, 7, 9, 10 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau comparatif -->
+        <div class="card mt-4">
+          <div class="card-header bg-dark-subtle text-dark">
+            ISO 9001 vs EN 9100 vs ISO 14001
+          </div>
+          <div class="card-body text-dark">
+            <div class="table-responsive">
+              <table class="table table-sm align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Norme</th>
+                    <th>Type de système</th>
+                    <th>Focus principal</th>
+                    <th>Secteur</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ISO 9001</td>
+                    <td>SMQ</td>
+                    <td>
+                      Qualité, satisfaction client, conformité produit/service. [web:26][web:32]
+                    </td>
+                    <td>Tous secteurs</td>
+                  </tr>
+                  <tr>
+                    <td>EN 9100</td>
+                    <td>SMQ aéronautique</td>
+                    <td>
+                      Qualité + exigences spécifiques sécurité, fiabilité et traçabilité
+                      pour l’aéronautique. [web:25][web:31][web:38]
+                    </td>
+                    <td>Aéronautique, espace, défense</td>
+                  </tr>
+                  <tr>
+                    <td>ISO 14001</td>
+                    <td>SME</td>
+                    <td>
+                      Performance environnementale, conformité réglementaire, prévention
+                      de la pollution. [web:21][web:26][web:32]
+                    </td>
+                    <td>Tous secteurs à impact environnemental</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE CHECKLIST -->
+      <section id="module-checklist" class="module-section d-none">
+        <h2 class="mb-3">Checklist de conformité intelligente</h2>
+        <p class="text-secondary">
+          Évalue le niveau de conformité pour chaque exigence ISO 14001 / EN 9100, ajoute des commentaires
+          et des preuves, puis laisse l’application calculer automatiquement le taux global. [web:42][web:45]
+        </p>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-4">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Taux de conformité</div>
+                <div class="kpi-value d-flex align-items-center justify-content-center gap-2">
+                  <span id="chkConformityIcon">✔</span>
+                  <span id="chkConformityRate">0 %</span>
+                </div>
+                <div class="small text-secondary" id="chkConformityDetails">
+                  0 exigences évaluées
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Partiellement conformes</div>
+                <div class="kpi-value" id="chkPartialCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Non conformités</div>
+                <div class="kpi-value" id="chkNonConformCount">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-3">
+          <select class="form-select form-select-sm w-auto" id="chkFilterStandard">
+            <option value="ALL">Toutes les normes</option>
+            <option value="ISO14001">ISO 14001</option>
+            <option value="EN9100">EN 9100</option>
+          </select>
+
+          <select class="form-select form-select-sm w-auto" id="chkFilterStatus">
+            <option value="ALL">Tous les statuts</option>
+            <option value="CONFORME">Conforme</option>
+            <option value="PARTIEL">Partiellement conforme</option>
+            <option value="NON">Non conforme</option>
+          </select>
+
+          <button class="btn btn-sm btn-outline-light ms-auto" id="chkResetBtn">
+            Réinitialiser la checklist
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-dark table-striped table-hover align-middle mb-0" id="chkTable">
+                <thead>
+                  <tr>
+                    <th style="width: 10%">Norme</th>
+                    <th style="width: 10%">Chapitre</th>
+                    <th style="width: 25%">Exigence</th>
+                    <th style="width: 15%">Statut</th>
+                    <th style="width: 20%">Commentaire</th>
+                    <th style="width: 20%">Preuve</th>
+                  </tr>
+                </thead>
+                <tbody id="chkTableBody">
+                  <!-- Lignes générées en JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-secondary">
+            Les données de la checklist sont enregistrées automatiquement dans ton navigateur (LocalStorage),
+            pour que tu puisses reprendre ton travail plus tard sans backend. [web:48]
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE RISQUES -->
+      <section id="module-risks" class="module-section d-none">
+        <h2 class="mb-3">Analyse des risques & opportunités</h2>
+        <p class="text-secondary">
+          Ajoute les risques liés aux aspects environnementaux (ISO 14001) et aux activités opérationnelles
+          aéronautiques (EN 9100), puis évalue leur criticité à partir de la gravité et de la probabilité. [web:71][web:76]
+        </p>
+
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row g-2">
+              <div class="col-md-2">
+                <label class="form-label small">Norme</label>
+                <select class="form-select form-select-sm" id="riskStandard">
+                  <option value="ISO14001">ISO 14001</option>
+                  <option value="EN9100">EN 9100</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">Catégorie</label>
+                <select class="form-select form-select-sm" id="riskCategory">
+                  <option value="Aspect environnemental">Aspect environnemental</option>
+                  <option value="Processus opérationnel">Processus opérationnel</option>
+                  <option value="Fournisseur / sous-traitant">Fournisseur / sous-traitant</option>
+                  <option value="Conformité réglementaire">Conformité réglementaire</option>
+                </select>
+              </div>
+              <div class="col-md-7">
+                <label class="form-label small">Description du risque / opportunité</label>
+                <input type="text" class="form-control form-control-sm" id="riskDescription"
+                       placeholder="Exemple : Déversement possible de produit chimique, retard fournisseur critique..." />
+              </div>
+            </div>
+
+            <div class="row g-2 mt-2">
+              <div class="col-md-2">
+                <label class="form-label small">Gravité (1–5)</label>
+                <input type="number" min="1" max="5" class="form-control form-control-sm" id="riskSeverity" value="3" />
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small">Probabilité (1–5)</label>
+                <input type="number" min="1" max="5" class="form-control form-control-sm" id="riskProbability" value="3" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">Type</label>
+                <select class="form-select form-select-sm" id="riskType">
+                  <option value="Risque">Risque</option>
+                  <option value="Opportunité">Opportunité</option>
+                </select>
+              </div>
+              <div class="col-md-5 d-flex align-items-end justify-content-end">
+                <button class="btn btn-sm btn-primary" id="riskAddBtn">
+                  <i class="bi bi-plus-lg me-1"></i>Ajouter au registre
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Risques totaux</div>
+                <div class="kpi-value" id="riskTotalCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Opportunités</div>
+                <div class="kpi-value" id="riskOppCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Risques critiques</div>
+                <div class="kpi-value" id="riskCriticalCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex align-items-center justify-content-end">
+            <button class="btn btn-sm btn-outline-light" id="riskResetBtn">
+              Réinitialiser le registre
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <select class="form-select form-select-sm w-auto" id="riskFilterStandard">
+            <option value="ALL">Toutes les normes</option>
+            <option value="ISO14001">ISO 14001</option>
+            <option value="EN9100">EN 9100</option>
+          </select>
+          <select class="form-select form-select-sm w-auto" id="riskFilterLevel">
+            <option value="ALL">Tous les niveaux</option>
+            <option value="LOW">Faible</option>
+            <option value="MEDIUM">Moyen</option>
+            <option value="CRITICAL">Critique</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-dark table-striped table-hover align-middle mb-0" id="riskTable">
+                <thead>
+                  <tr>
+                    <th>Norme</th>
+                    <th>Type</th>
+                    <th>Catégorie</th>
+                    <th>Description</th>
+                    <th>G</th>
+                    <th>P</th>
+                    <th>Niveau</th>
+                    <th>Action liée</th>
+                  </tr>
+                </thead>
+                <tbody id="riskTableBody">
+                  <!-- lignes générées en JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-secondary">
+            Le niveau de risque est calculé en multipliant gravité et probabilité (échelle 1–5), puis
+            classé en faible, moyen ou critique selon une matrice simple. [web:77][web:89]
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE ACTIONS -->
+      <section id="module-actions" class="module-section d-none">
+        <h2 class="mb-3">Plan d’actions & amélioration continue</h2>
+        <p class="text-secondary">
+          Enregistre les actions correctives et préventives issues des non-conformités, audits et risques,
+          puis suis leur avancement dans une logique PDCA. [web:91][web:94]
+        </p>
+
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <label class="form-label small">Intitulé de l’action</label>
+                <input type="text" class="form-control form-control-sm" id="actTitle"
+                       placeholder="Exemple : Mettre à jour la procédure de gestion des déversements" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small">Cause racine (résumé)</label>
+                <input type="text" class="form-control form-control-sm" id="actRootCause"
+                       placeholder="Exemple : Analyse 5 pourquoi / Ishikawa..." />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small">Risque / opportunité lié(e)</label>
+                <select class="form-select form-select-sm" id="actRelatedRisk">
+                  <option value="">(aucun)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-2 mt-2">
+              <div class="col-md-3">
+                <label class="form-label small">Responsable</label>
+                <input type="text" class="form-control form-control-sm" id="actOwner"
+                       placeholder="Nom du pilote d’action" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">Date début</label>
+                <input type="date" class="form-control form-control-sm" id="actStartDate" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">Date fin prévue</label>
+                <input type="date" class="form-control form-control-sm" id="actDueDate" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">Impact attendu</label>
+                <select class="form-select form-select-sm" id="actImpact">
+                  <option value="Faible">Faible</option>
+                  <option value="Moyen">Moyen</option>
+                  <option value="Fort">Fort</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-2 mt-2">
+              <div class="col-md-9">
+                <label class="form-label small">Détails de l’action</label>
+                <textarea class="form-control form-control-sm" id="actDetails" rows="2"
+                          placeholder="Étapes principales, ressources nécessaires, liens vers des documents..."></textarea>
+              </div>
+              <div class="col-md-3 d-flex align-items-end justify-content-end">
+                <button class="btn btn-sm btn-primary w-100" id="actAddBtn">
+                  <i class="bi bi-plus-lg me-1"></i>Ajouter au plan d’actions
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Actions totales</div>
+                <div class="kpi-value" id="actTotalCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">En cours</div>
+                <div class="kpi-value" id="actOpenCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Clôturées</div>
+                <div class="kpi-value" id="actClosedCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Actions en retard</div>
+                <div class="kpi-value" id="actLateCount">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
+          <select class="form-select form-select-sm w-auto" id="actFilterStatus">
+            <option value="ALL">Tous les statuts</option>
+            <option value="OPEN">En cours</option>
+            <option value="CLOSED">Clôturée</option>
+            <option value="LATE">En retard</option>
+          </select>
+
+          <select class="form-select form-select-sm w-auto" id="actFilterOwner">
+            <option value="ALL">Tous les responsables</option>
+          </select>
+
+          <button class="btn btn-sm btn-outline-light ms-auto" id="actResetBtn">
+            Réinitialiser le plan d’actions
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-dark table-striped table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Statut</th>
+                    <th>Action</th>
+                    <th>Cause racine</th>
+                    <th>Risque lié</th>
+                    <th>Responsable</th>
+                    <th>Début</th>
+                    <th>Fin prévue</th>
+                    <th>Impact</th>
+                  </tr>
+                </thead>
+                <tbody id="actTableBody">
+                  <!-- lignes générées en JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-secondary">
+            Les actions matérialisent la phase "Act" du PDCA en traitant les non-conformités, risques
+            et opportunités pour améliorer durablement le système. [web:91][web:93]
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULE AUDIT (UN SEUL) -->
+      <section id="module-audit" class="module-section d-none">
+        <h2 class="mb-3">Audit interne simulé</h2>
+        <p class="text-secondary">
+          Simule un audit interne ISO 14001 ou EN 9100 avec sauvegarde persistante et génération
+          d'un rapport PDF professionnel multi-pages. [web:56][web:82]
+        </p>
+
+        <!-- Choix norme et génération -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-3">
+                <label class="form-label small">Norme auditée</label>
+                <select class="form-select form-select-sm" id="auditStandard">
+                  <option value="ISO14001">ISO 14001</option>
+                  <option value="EN9100">EN 9100</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small">Nombre de questions</label>
+                <select class="form-select form-select-sm" id="auditQuestionCount">
+                  <option value="5">5 questions</option>
+                  <option value="10" selected>10 questions</option>
+                  <option value="15">15 questions</option>
+                  <option value="25">Toutes les questions</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small">Auditeur</label>
+                <input type="text" class="form-control form-control-sm" id="auditAuditorName"
+                       placeholder="Votre nom" />
+              </div>
+              <div class="col-md-4 d-flex justify-content-end gap-2">
+                <button class="btn btn-sm btn-primary" id="auditGenerateBtn">
+                  <i class="bi bi-shuffle me-1"></i>Générer un audit
+                </button>
+                <button class="btn btn-sm btn-success" id="auditDownloadPdfBtn" style="display: none;">
+                  <i class="bi bi-download me-1"></i>Télécharger PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Résumé audit -->
+        <div class="row g-3 mb-3">
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Questions totales</div>
+                <div class="kpi-value" id="auditTotalQuestions">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Réponses conformes</div>
+                <div class="kpi-value" id="auditYesCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Écarts / points à traiter</div>
+                <div class="kpi-value" id="auditGapCount">0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card kpi-card text-center">
+              <div class="card-body">
+                <div class="kpi-label">Progression</div>
+                <div class="kpi-value" id="auditProgress">0 %</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau des questions (page actuelle) -->
+        <div class="card mb-3">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-dark table-striped table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 12%">Chapitre</th>
+                    <th style="width: 45%">Question d'audit</th>
+                    <th style="width: 15%">Réponse</th>
+                    <th style="width: 23%">Commentaire</th>
+                  </tr>
+                </thead>
+                <tbody id="auditTableBody">
+                  <!-- questions générées en JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination & actions -->
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="small text-secondary" id="auditPageInfo">
+            Page 1 / 1
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-outline-light" id="auditPrevBtn" style="display: none;">
+              <i class="bi bi-arrow-left me-1"></i>Précédent
+            </button>
+            <button class="btn btn-sm btn-primary" id="auditSavePageBtn">
+              <i class="bi bi-floppy me-1"></i>Sauvegarder cette page
+            </button>
+            <button class="btn btn-sm btn-outline-light" id="auditNextBtn" style="display: none;">
+              Suivant <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+        <button id="auditFinalizeBtn" class="btn btn-success btn-sm mt-2">
+          Clôturer l’audit et mettre à jour le dashboard
+        </button>
+        <div class="card-footer small text-secondary mt-3" id="auditSummaryText">
+          Génère un audit pour commencer.
+        </div>
+      </section>
+
+      <!-- MODULE DASHBOARD -->
+<section id="module-dashboard" class="module-section d-none">
+  <h2 class="mb-2">Dashboard qualité</h2>
+  <p class="text-secondary mb-3">
+    Vue agrégée des indicateurs clés : taux global de conformité, non-conformités, risques critiques, actions en retard.
+  </p>
+
+  <!-- Bandeau synthèse décisionnelle -->
+  <div id="qmsSummaryBanner" class="qms-summary-banner qms-summary-neutral">
+    <div class="qms-summary-icon">
+      <i class="bi bi-speedometer2"></i>
+    </div>
+    <div class="qms-summary-text">
+      <div id="qmsSummaryTitle" class="qms-summary-title">
+        Synthèse globale du système qualité
+      </div>
+      <div id="qmsSummaryBody" class="qms-summary-body">
+        Les indicateurs du cockpit sont en cours de calcul. Navigue dans la checklist, les risques et le plan d'actions pour alimenter le dashboard.
+      </div>
+    </div>
+  </div>
+  <!-- Ligne KPI cockpit -->
+  <div class="row g-3 mb-3">
+    <!-- Conformité globale -->
+    <div class="col-md-3">
+      <div class="dashboard-kpi-card" id="kpiCardConformity">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <div class="d-flex align-items-center gap-2">
+            <div class="kpi-icon kpi-icon-blue">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div class="kpi-label">Taux de conformité</div>
+          </div>
+          <span class="kpi-trend" id="kpiConformityTrend">=</span>
+        </div>
+        <div class="kpi-main-value">
+          <span id="kpiConformity">0</span><span class="kpi-unit">%</span>
+        </div>
+        <div class="kpi-caption small text-secondary" id="kpiConformityNote">
+          Basé sur les exigences évaluées ISO 14001 & EN 9100.
+        </div>
+      </div>
+    </div>
+
+    <!-- Non-conformités -->
+    <div class="col-md-3">
+      <div class="dashboard-kpi-card" id="kpiCardNC">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <div class="d-flex align-items-center gap-2">
+            <div class="kpi-icon kpi-icon-orange">
+              <i class="bi bi-x-octagon"></i>
+            </div>
+            <div class="kpi-label">Non-conformités</div>
+          </div>
+          <span class="kpi-trend" id="kpiNCTrend">=</span>
+        </div>
+        <div class="kpi-main-value">
+          <span id="kpiNC">0</span>
+        </div>
+        <div class="kpi-caption small text-secondary" id="kpiNCNote">
+          Issues de la checklist et des audits internes.
+        </div>
+      </div>
+    </div>
+
+    <!-- Risques critiques -->
+    <div class="col-md-3">
+      <div class="dashboard-kpi-card" id="kpiCardCriticalRisks">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <div class="d-flex align-items-center gap-2">
+            <div class="kpi-icon kpi-icon-red">
+              <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <div class="kpi-label">Risques critiques</div>
+          </div>
+          <span class="kpi-trend" id="kpiCriticalTrend">=</span>
+        </div>
+        <div class="kpi-main-value">
+          <span id="kpiCriticalRisks">0</span>
+        </div>
+        <div class="kpi-caption small text-secondary" id="kpiCriticalNote">
+          Calculés à partir de la matrice gravité × probabilité.
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions en retard -->
+    <div class="col-md-3">
+      <div class="dashboard-kpi-card" id="kpiCardLateActions">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <div class="d-flex align-items-center gap-2">
+            <div class="kpi-icon kpi-icon-amber">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <div class="kpi-label">Actions en retard</div>
+          </div>
+          <span class="kpi-trend" id="kpiLateTrend">=</span>
+        </div>
+        <div class="kpi-main-value">
+          <span id="kpiLateActions">0</span>
+        </div>
+        <div class="kpi-caption small text-secondary" id="kpiLateNote">
+          Suivi PDCA du plan d'actions.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne graphiques -->
+  <div class="row g-3">
+    <div class="col-md-8">
+      <div class="card dashboard-chart-card">
+        <div class="card-header bg-transparent border-0 d-flex align-items-center justify-content-between">
+          <div>
+            <div class="small text-uppercase text-secondary fw-semibold">Historique audits & conformité</div>
+            <div class="small text-muted">Évolution du taux de conformité et des non-conformités par audit.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <canvas id="conformityChart" height="120"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card dashboard-chart-card">
+        <div class="card-header bg-transparent border-0">
+          <div class="small text-uppercase text-secondary fw-semibold">Profil des risques</div>
+          <div class="small text-muted">Répartition des risques ISO 14001 vs EN 9100.</div>
+        </div>
+        <div class="card-body">
+          <canvas id="riskProfileChart" height="140"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <!-- MODULE DASHBOARD -->
+      <section id="module-dashboard" class="module-section d-none">
+        <h2 class="mb-3">Dashboard qualité</h2>
+        <p class="text-secondary">
+          Vue agrégée des indicateurs clés taux global de conformité, non-conformités, risques critiques, actions en retard.
+        </p>
+
+  <!-- Bouton export PDF global -->
+  <div class="mb-3 d-flex justify-content-end">
+    <button class="btn btn-sm btn-success" id="dashboardExportPdfBtn">
+      <i class="bi bi-download me-1"></i>Exporter le rapport global (PDF)
+    </button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- JS applicatif -->
+  <script src="app.js"></script>
+</body>
+</html>
