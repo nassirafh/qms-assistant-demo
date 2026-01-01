@@ -318,13 +318,13 @@ function refreshConformityChart() {
 
 function initRiskProfileChart() {
   const ctx = document.getElementById("riskProfileChart");
-  if (!ctx || typeof loadRisks !== "function") return;
+  if (!ctx) return;
 
   const risks = loadRisks() || [];
 
   const classifyRiskLevel = (score) => {
-    if (score >= 16) return "CRITICAL";
-    if (score >= 8) return "MEDIUM";
+    if (score >= 12) return "CRITICAL";
+    if (score >= 6) return "MEDIUM";
     return "LOW";
   };
 
@@ -634,8 +634,8 @@ function getAllRisksForLinking() {
 }
 
 function classifyRiskLevel(score) {
-  if (score >= 16) return 'CRITICAL';
-  if (score >= 8) return 'MEDIUM';
+  if (score >= 12) return 'CRITICAL';
+  if (score >= 6) return 'MEDIUM';
   return 'LOW';
 }
 
